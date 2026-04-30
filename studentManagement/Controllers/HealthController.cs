@@ -12,6 +12,7 @@ namespace studentManagement.Controllers
             return Ok(new
             {
                 status=200,
+                wrongmessage
                 message = "working properly",
                 desc = "student managemennt system"
             });
