@@ -11,10 +11,11 @@ namespace studentManagement.Controllers
         {
             return Ok(new
             {
-                status=200,
-             
+                status = 200,
+
                 message = "working properly",
-                desc = "student managemennt system"
+                desc = "student managemennt system",
+                isrunning = true,
             });
         }
     }
