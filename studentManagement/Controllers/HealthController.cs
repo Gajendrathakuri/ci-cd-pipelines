@@ -12,7 +12,8 @@ namespace studentManagement.Controllers
             return Ok(new
             {
                 status=200,
-             
+                Isactive=true,
+                iswrokingFile=true,
                 message = "working properly",
                 desc = "student managemennt system"
             });
