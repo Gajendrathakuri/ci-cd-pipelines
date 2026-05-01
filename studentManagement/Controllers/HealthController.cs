@@ -6,6 +6,11 @@ namespace studentManagement.Controllers
     [Route("api/[Controller]")]
     public class HealthController : ControllerBase
     {
+        public readonly IConfiguration _configuration;
+        public HealthController(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
         [HttpGet]
         public IActionResult Health()
         {
@@ -16,8 +21,11 @@ namespace studentManagement.Controllers
                 Isactive=true,
                 iswrokingFile=true,
                 message = "working properly",
+                environment = _configuration["ApplicationSettings:ApplicationName"],
+                supportEmail = _configuration["ApplicationSettings:SupportEmail"],
                 desc = "student managemennt system",
                 isrunning = true,
+                studentPortal = _configuration["ExternalServices:studentPortal"]
             });
         }
     }
