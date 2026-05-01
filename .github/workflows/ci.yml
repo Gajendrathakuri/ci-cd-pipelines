@@ -51,7 +51,7 @@ jobs:
         env:
           Demo: ${{secrets.DEMO_API_KEY}}
         run: |
-           if[-z "$Demo"]; then
+           if [-z "$Demo"]; then
               echo "Repositor secret Demo us missing"
               exit 1
             fi
@@ -62,7 +62,7 @@ jobs:
         env:
           deploy: ${{secrets.DEP}}
         run: |
-            if[-z "$deploy"]; then
+            if [-z "$deploy"]; then
               echo "environment secret is missing"
               exit 1
             fi
