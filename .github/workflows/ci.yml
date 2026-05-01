@@ -21,6 +21,11 @@ jobs:
     name: Build, Test, and Publish
     runs-on: ubuntu-latest
 
+# attach the environment  
+    environment:
+      name: Development
+      deployment: false
+  
     # steps are the works or tasks done inside a job
     steps:
       # Step 1: Download the repository code 
@@ -33,6 +38,36 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
+       # show repo name  
+      - name: show repository name
+        run: echo "workflow environment is ${{vars.SERVER}}"
+
+        #show target server
+      - name: show target name  
+        run: echo "target server is ${{secrets.DEP}}"
+
+
+      - name: check repo secret
+        env:
+          Demo: ${{secrets.DEMO_API_KEY}}
+        run: |
+           if[-z "$Demo"]; then
+              echo "Repositor secret Demo us missing"
+              exit 1
+            fi
+            echo "Repository secret is available"
+
+      # check environment level secret
+      - name: check envirom secret
+        env:
+          deploy: ${{secrets.DEP}}
+        run: |
+            if[-z "$deploy"]; then
+              echo "environment secret is missing"
+              exit 1
+            fi
+            echo "Environment secret is available"
+              
       # Step 3: Restore NuGet packages
       - name: Restore dependencies
         run: dotnet restore studentManagement.slnx
